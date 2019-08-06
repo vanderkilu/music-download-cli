@@ -1,0 +1,16 @@
+{
+  "name": "musicdownloader",
+  "version": "1.0.0",
+  "description": "a music crawler downloader",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vanderkiliku@gmail.com",
+  "license": "ISC"
+}
