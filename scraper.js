@@ -3,7 +3,7 @@ const cheerio = require('cheerio')
 
 const getSongs = async (searchUrl)=> {
     const {data} = await axios.get(searchUrl)
-    const linkElements = cheerio('h2.entry-title a', data).map(async (i,linkElement) => {
+    const linkElements = cheerio('h2.entry-title a', data).map((i,linkElement) => {
         const link = linkElement.attribs.href
         const songTitle = cheerio(linkElement).text()
         return  {
@@ -11,6 +11,7 @@ const getSongs = async (searchUrl)=> {
             songTitle
         }
     }).get()
+    return linkElements
 }
 
 const getSongDownloadLink = async (songLink) => {
