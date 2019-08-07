@@ -4,6 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const request = require('request')
 const progress = require('request-progress')
+const ProgressBar = require('./progressBar')
 
 const homePage = 'https://www.hitxgh.com/'
 
@@ -44,11 +45,17 @@ async function fetchSong() {
         method: 'GET',
         encoding: null
     }
+    const Bar = new ProgressBar()
     progress(request(setting))
     .on('progress', (state)=> {
-        console.log(state.percent + '\t ' + state.speed + '\t ' + state.time.elapsed)
+        let hasInit = false
+        if (!hasInit) {
+            Bar.init(state.size.total)
+            hasInit = true
+        }
+		Bar.update(state.size.transferred);
     })
-    .on('error', console.log(err))
+    .on('error', (err)=> console.log(err))
     .on('end', ()=> console.log('download completed'))
     .pipe(writer)
 }
