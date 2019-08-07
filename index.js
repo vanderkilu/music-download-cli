@@ -35,7 +35,7 @@ async function downloadSong() {
     const song = await fetchSongs(homePage)
     console.log('preparing to download ......'+ '\n')
     const {downloadLink, title }= await getSong(song.link)
-    console.log(downloadLink)
+
 
     const pathUrl = path.resolve(__dirname, 'songs', title +'.mp3')
     const writer = fs.createWriteStream(pathUrl)
