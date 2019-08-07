@@ -6,7 +6,7 @@ module.exports = async (searchUrl) => {
     const linkElements = cheerio('h2.entry-title a', data).map(async (i,linkElement) => {
         const link = linkElement.attribs.href
         const innerHTML = await axios.get(link) 
-        const downloadLink = cheerio('.wp-audio-shortcode a', data).attr('href')
+        const downloadLink = cheerio('.wp-audio-shortcode a',  innerHTML.data).attr('href')
         const title = cheerio('h1.entry-title', innerHTML.data).text()
         return  {
             downloadLink,
