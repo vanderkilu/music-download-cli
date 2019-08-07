@@ -28,3 +28,6 @@ module.exports = {
     getSongs,
     getSong
 }
+
+//todo add cache to reduce call to server
+//feature allow multiple downloads

@@ -5,6 +5,7 @@ const path = require('path')
 const request = require('request')
 const progress = require('request-progress')
 const ProgressBar = require('./progressBar')
+const https = require('https')
 
 const homePage = 'https://www.hitxgh.com/'
 
