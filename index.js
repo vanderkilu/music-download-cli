@@ -30,7 +30,7 @@ async function fetchSongs() {
     return song
 }
 
-async function fetchSong() {
+async function downloadSong() {
     console.log('fetching songs ......' + '\n')
     const song = await fetchSongs(homePage)
     console.log('preparing to download ......'+ '\n')
@@ -60,4 +60,4 @@ async function fetchSong() {
     .pipe(writer)
 }
 
-fetchSong()
+downloadSong()
