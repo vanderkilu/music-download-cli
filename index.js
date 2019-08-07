@@ -3,6 +3,7 @@ const inquirer = require('inquirer')
 const fs = require('fs')
 const path = require('path')
 const request = require('request')
+const progress = require('request-progress')
 
 const homePage = 'https://www.hitxgh.com/'
 
@@ -29,9 +30,9 @@ async function fetchSongs() {
 }
 
 async function fetchSong() {
-    console.log('fetching songs ......')
+    console.log('fetching songs ......' + '\n')
     const song = await fetchSongs(homePage)
-    console.log('preparing to download ......')
+    console.log('preparing to download ......'+ '\n')
     const {downloadLink, title }= await getSong(song.link)
     console.log(downloadLink)
 
@@ -43,12 +44,13 @@ async function fetchSong() {
         method: 'GET',
         encoding: null
     }
-    request(setting)
-            .pipe(writer)
-            .on("data", chunk => {
-                console.log('get')
-            })
-            .on("end", () => console.log("Finished!"))
+    progress(request(setting))
+    .on('progress', (state)=> {
+        console.log(state.percent + '\t ' + state.speed + '\t ' + state.time.elapsed)
+    })
+    .on('error', console.log(err))
+    .on('end', ()=> console.log('download completed'))
+    .pipe(writer)
 }
 
 fetchSong()
