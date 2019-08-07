@@ -1,9 +1,9 @@
-const axios = require('axios')
+const rp = require('request-promise')
 const cheerio = require('cheerio')
 
 const getSongs = async (searchUrl)=> {
-    const {data} = await axios.get(searchUrl)
-    const linkElements = cheerio('h2.entry-title a', data).map((i,linkElement) => {
+    const html = await rp(searchUrl)
+    const linkElements = cheerio('h2.entry-title a', html).map((i,linkElement) => {
         const link = linkElement.attribs.href
         const songTitle = cheerio(linkElement).text()
         return  {
@@ -14,10 +14,10 @@ const getSongs = async (searchUrl)=> {
     return linkElements
 }
 
-const getSongDownloadLink = async (songLink) => {
-    const innerHTML = await axios.get(link) 
-    const downloadLink = cheerio('.wp-audio-shortcode a',  innerHTML.data).attr('href')
-    const title = cheerio('h1.entry-title', innerHTML.data).text()
+const getSong = async (songLink) => {
+    const innerHTML = await rp(songLink) 
+    const downloadLink = cheerio('.wp-audio-shortcode a',  innerHTML).attr('href')
+    const title = cheerio('h1.entry-title', innerHTML).text()
     return  {
         downloadLink,
         title
@@ -26,5 +26,5 @@ const getSongDownloadLink = async (songLink) => {
 
 module.exports = {
     getSongs,
-    getSongDownloadLink
+    getSong
 }
