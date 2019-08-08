@@ -21,7 +21,7 @@ async function fetchSongs() {
         songs = await getSongs(homePage)
 
         spinner.stop()
-        process.stdout.write('\n')
+        process.stdout.write('\n\n')
     }
     catch(err) {
         console.log('there was an error retrieving songs')
@@ -50,7 +50,7 @@ async function downloadSong() {
     const {downloadLink, title }= await getSong(song.link)
 
     spinner.stop()
-    process.stdout.write('\n')
+    process.stdout.write('\n\n')
 
     const pathUrl = path.resolve(__dirname, 'songs', title +'.mp3')
     const writer = fs.createWriteStream(pathUrl)
