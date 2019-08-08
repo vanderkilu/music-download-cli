@@ -91,11 +91,11 @@ async function downloadSong(downloadPath) {
  * it checks also if provided path exists
  */
 function init() {
-    const downloadPath  = process.argv.slice(2).join("")
+    const downloadPath = process.argv.slice(2).join("")
     let filePath
     if (downloadPath === "") {
         filePath = process.cwd()
-        downloadPath(filePath)
+        downloadSong(filePath)
     }
     else {
         filePath = downloadPath
