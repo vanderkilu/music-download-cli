@@ -4,6 +4,7 @@
   "description": "it crawls for latest songs in ghana and gives you chance to download it",
   "main": "./lib/index.js",
   "dependencies": {
+    "@babel/runtime": "^7.5.5",
     "chalk": "^2.4.2",
     "cheerio": "^1.0.0-rc.3",
     "cli-spinner": "^0.2.10",
@@ -16,6 +17,7 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "cross-env": "^5.2.0"
   },
