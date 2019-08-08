@@ -103,7 +103,7 @@ function init() {
             fs.lstatSync(filePath).isDirectory()
              downloadSong(filePath)
         }
-        catch {
+        catch(err) {
             console.log('path does not exists, kindly check well')
         }
     }
