@@ -1,8 +1,8 @@
 {
-  "name": "musicdownloader",
+  "name": "gh-music-downloader",
   "version": "1.0.0",
-  "description": "a music crawler downloader",
-  "main": "index.js",
+  "description": "it crawls for latest songs in ghana and gives you chance to download it",
+  "main": "./lib/index.js",
   "dependencies": {
     "chalk": "^2.4.2",
     "cheerio": "^1.0.0-rc.3",
@@ -12,10 +12,31 @@
     "request-progress": "^3.0.0",
     "request-promise": "^4.2.4"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-add-module-exports": "^1.0.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-minify": "^0.5.0",
+    "cross-env": "^5.2.0"
   },
-  "author": "vanderkiliku@gmail.com",
-  "license": "ISC"
+  "scripts": {
+    "build": "cross-env BABEL_ENV=production babel src --out-dir lib"
+  },
+  "keywords": [
+    "downloader",
+    "music-download",
+    "Ghana music download"
+  ],
+  "files": [
+    "lib",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanderkilu/music-download-cli.git"
+  },
+  "homepage": "https://github.com/vanderkilu/music-download-cli#readme",
+  "author": "kweku kilu (vanderkiliku@gmail.com)",
+  "license": "MIT"
 }
