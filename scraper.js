@@ -11,7 +11,7 @@ const getSongs = async (searchUrl)=> {
             songTitle
         }
     }).get()
-    return linkElements
+    return linkElements.filter(linkElement => linkElement.link !== undefined)
 }
 
 const getSong = async (songLink) => {
