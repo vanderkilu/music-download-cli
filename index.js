@@ -9,6 +9,10 @@ const Spinner = require('cli-spinner').Spinner
 
 const homePage = 'https://www.hitxgh.com/'
 
+/**
+ * fetch songs 
+ * prompt for songs to download
+ */
 
 async function fetchSongs() {
     const questions = []
@@ -39,7 +43,11 @@ async function fetchSongs() {
     return song
 }
 
-async function downloadSong() {
+/**
+ * downloads the selected song
+ * @todo allow batch downloads
+ */
+async function downloadSong(downloadPath) {
 
     const song = await fetchSongs(homePage)
 
@@ -52,7 +60,7 @@ async function downloadSong() {
     spinner.stop()
     process.stdout.write('\n\n')
 
-    const pathUrl = path.resolve(__dirname, 'songs', title +'.mp3')
+    const pathUrl = path.resolve(downloadPath, title +'.mp3')
     const writer = fs.createWriteStream(pathUrl)
     
     const setting = {
@@ -76,4 +84,29 @@ async function downloadSong() {
     .pipe(writer)
 }
 
-downloadSong()
+/**
+ * program starts here
+ * checks if path is provided
+ * if not use current directory
+ * it checks also if provided path exists
+ */
+function init() {
+    const downloadPath  = process.argv.slice(2).join("")
+    let filePath
+    if (downloadPath === "") {
+        filePath = process.cwd()
+        downloadPath(filePath)
+    }
+    else {
+        filePath = downloadPath
+        try {
+            fs.lstatSync(filePath).isDirectory()
+             downloadSong(filePath)
+        }
+        catch {
+            console.log('path does not exists, kindly check well')
+        }
+    }
+}
+
+init()

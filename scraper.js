@@ -1,6 +1,12 @@
 const rp = require('request-promise')
 const cheerio = require('cheerio')
 
+/**
+ * scrapes sites song link
+ * @param {String} searchUrl 
+ * @returns {Array} of object of links and song title
+ */
+
 const getSongs = async (searchUrl)=> {
     const html = await rp(searchUrl)
     const linkElements = cheerio('h2.entry-title a', html).map((i,linkElement) => {
@@ -13,6 +19,12 @@ const getSongs = async (searchUrl)=> {
     }).get()
     return linkElements.filter(linkElement => linkElement.link !== undefined)
 }
+
+/**
+ * 
+ * @param {String} songLink
+ * @returns {Object} of download link and song title 
+ */
 
 const getSong = async (songLink) => {
     const innerHTML = await rp(songLink) 
