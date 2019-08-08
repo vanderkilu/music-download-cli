@@ -14,7 +14,14 @@ async function fetchSongs() {
     const questions = []
     let songs
     try {
+        const spinner = new Spinner('retrieving lastest song.. %s')
+        spinner.setSpinnerString('|/-\\')
+        spinner.start()
+
         songs = await getSongs(homePage)
+
+        spinner.stop()
+        process.stdout.write('\n')
     }
     catch(err) {
         console.log('there was an error retrieving songs')
@@ -34,19 +41,16 @@ async function fetchSongs() {
 
 async function downloadSong() {
 
-    const spinner1 = new Spinner('retrieving lastest song.. %s')
-    spinner1.setSpinnerString('|/-\\')
-    spinner1.start()
-
     const song = await fetchSongs(homePage)
-    spinner1.stop()
 
-    const spinner2 = new Spinner('retrieving lastest song.. %s')
-    spinner2.setSpinnerString('|/-\\')
-    spinner2.start()
+    const spinner = new Spinner('preparing to download song .. %s')
+    spinner.setSpinnerString('|/-\\')
+    spinner.start()
 
     const {downloadLink, title }= await getSong(song.link)
-    spinner2.stop()
+
+    spinner.stop()
+    process.stdout.write('\n')
 
     const pathUrl = path.resolve(__dirname, 'songs', title +'.mp3')
     const writer = fs.createWriteStream(pathUrl)
@@ -56,6 +60,7 @@ async function downloadSong() {
         method: 'GET',
         encoding: null
     }
+
     const Bar = new ProgressBar()
     progress(request(setting))
     .on('progress', (state)=> {
