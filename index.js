@@ -5,7 +5,6 @@ const path = require('path')
 const request = require('request')
 const progress = require('request-progress')
 const ProgressBar = require('./progressBar')
-const https = require('https')
 
 const homePage = 'https://www.hitxgh.com/'
 
@@ -57,7 +56,7 @@ async function downloadSong() {
 		Bar.update(state.size.transferred);
     })
     .on('error', (err)=> console.log(err))
-    .on('end', ()=> console.log('download completed'))
+    .on('end', ()=> console.log('\n download completed'))
     .pipe(writer)
 }
 
