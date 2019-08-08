@@ -13,15 +13,14 @@
     "request-promise": "^4.2.4"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-add-module-exports": "^1.0.2",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-minify": "^0.5.0",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "cross-env": "^5.2.0"
   },
   "scripts": {
-    "build": "cross-env BABEL_ENV=production babel src --out-dir lib"
+    "build": "cross-env babel src --out-dir lib"
   },
   "bin": {
     "@kweku_kilu/music-downloader-gh": "bin/music-downloader-gh",
