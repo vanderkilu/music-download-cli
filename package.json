@@ -23,12 +23,20 @@
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src --out-dir lib"
   },
+  "bin": {
+    "@kweku_kilu/gh-music-downloader": "bin/gh-music-downloader",
+    "gh-music-downloader": "bin/gh-music-downloader"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "downloader",
     "music-download",
     "Ghana music download"
   ],
   "files": [
+    "bin",
     "lib",
     "src"
   ],
