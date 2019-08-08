@@ -1,5 +1,5 @@
 {
-  "name": "gh-music-downloader",
+  "name": "music-downloader-gh",
   "version": "1.0.0",
   "description": "it crawls for latest songs in ghana and gives you chance to download it",
   "main": "./lib/index.js",
@@ -24,8 +24,8 @@
     "build": "cross-env BABEL_ENV=production babel src --out-dir lib"
   },
   "bin": {
-    "@kweku_kilu/gh-music-downloader": "bin/gh-music-downloader",
-    "gh-music-downloader": "bin/gh-music-downloader"
+    "@kweku_kilu/music-downloader-gh": "bin/music-downloader-gh",
+    "music-downloader-gh": "bin/music-downloader-gh"
   },
   "publishConfig": {
     "access": "public"
