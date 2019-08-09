@@ -17,5 +17,6 @@ npm install -g music-downloader-gh
 ```
 music-downloader-gh <path to save download file>
 ```
+*NB*: if path is not provided it will use the current working directory.
 
 Feel free to contribute to this project
