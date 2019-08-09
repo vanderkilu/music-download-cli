@@ -2,7 +2,7 @@
 
 This is an npm package (commandline app that helps you download the lastest released songs in ghana.
 
-![preview](https://github.com/vanderkilu/hackerNewsClone/blob/master/cli.png)
+![preview](https://github.com/vanderkilu/music-download-cli/blob/master/cli.png)
 
 
 #### SETUP
