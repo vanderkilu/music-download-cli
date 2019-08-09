@@ -1,8 +1,9 @@
 ### MUSIC DOWNLOAD GH
 
-This is an npm package (commandline app) that helps you download
-the lastest released songs in ghana.
-It is built on top of the popular hitxgh.com site ( ghana music download site)
+This is an npm package (commandline app that helps you download the lastest released songs in ghana.
+
+![preview](https://github.com/vanderkilu/hackerNewsClone/blob/master/cli.png)
+
 
 #### SETUP
 
