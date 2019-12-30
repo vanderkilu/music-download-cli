@@ -1,6 +1,6 @@
 {
   "name": "music-downloader-gh",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "it crawls for latest songs in ghana and gives you chance to download it",
   "main": "./lib/index.js",
   "dependencies": {
