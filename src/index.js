@@ -8,6 +8,7 @@ const ProgressBar = require('./progressBar')
 const Spinner = require('cli-spinner').Spinner
 
 const homePage = 'https://www.hitxgh.com/'
+const userAgent = 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36'
 
 /**
  * fetch songs 
@@ -29,6 +30,7 @@ async function fetchSongs() {
     }
     catch(err) {
         console.log('there was an error retrieving songs')
+        process.exit(0)
     }
     const songTitles = songs.map(song => song.songTitle)
     questions.push({
@@ -55,7 +57,18 @@ async function downloadSong(downloadPath) {
     spinner.setSpinnerString('|/-\\')
     spinner.start()
 
-    const {downloadLink, title }= await getSong(song.link)
+    let downloadLink,
+        title
+
+    try {
+        const songDetail = await getSong(song.link)
+        downloadLink = songDetail.downloadLink
+        title = songDetail.title
+    }
+    catch(err) {
+        console.log('couldn\'nt download song')
+        process.exit(0)
+    }
 
     spinner.stop()
     process.stdout.write('\n\n')
@@ -66,7 +79,10 @@ async function downloadSong(downloadPath) {
     const setting = {
         url: encodeURI(downloadLink),
         method: 'GET',
-        encoding: null
+        encoding: null,
+        headers: {
+            'User-Agent': userAgent
+        }
     }
 
     const Bar = new ProgressBar()
@@ -109,4 +125,5 @@ function init() {
     }
 }
 
+init()
 module.exports = init
